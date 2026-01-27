@@ -354,7 +354,7 @@ body {
 
 .recent-card:hover,
 .recommend-card:hover {
-  transform: translateY(-1px);
+  transform: translateY(1px);
   background: rgba(255, 255, 255, 0.07);
 }
 
