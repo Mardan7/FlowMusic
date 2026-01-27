@@ -262,7 +262,7 @@ body {
 .player-layout {
   flex: 1;
   display: grid;
-  grid-template-columns: 0.7fr 1.4fr;
+  grid-template-columns: 0.7fr 1.1fr;
   gap: 16px;
   padding: 8px 4px 4px;
   min-height: 0;
