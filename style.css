@@ -262,7 +262,7 @@ body {
 .player-layout {
   flex: 1;
   display: grid;
-  grid-template-columns: 0.7fr 1.1fr;
+  grid-template-columns: 0.9fr 1.1fr;
   gap: 16px;
   padding: 8px 4px 4px;
   min-height: 0;
@@ -354,18 +354,13 @@ body {
 
 .recent-card:hover,
 .recommend-card:hover {
-  transform: translateY(10px);
+  transform: translateY(-1px);
   background: rgba(255, 255, 255, 0.07);
 }
 
 .recent-card {
   flex-direction: row;
   align-items: center;
-  gap: 10px;
-}
-
-.recommend-card {
-  flex-direction: column;
   gap: 10px;
 }
 
