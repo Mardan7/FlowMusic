@@ -318,7 +318,7 @@ body {
 .panel-section {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 12px;
   flex: 1;
 }
 
@@ -338,7 +338,7 @@ body {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
   gap: 12px;
-  min-height: 90px;
+  min-height: 70px;
 }
 
 .recent-card,
