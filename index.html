@@ -31,13 +31,8 @@
           <div class="section-title">Соңғы тыңдалғандар</div>
           <div id="recent-grid" class="recent-grid empty-placeholder">Әзірге бос</div>
 
-          <div class="recommend-card">
-            <div class="cover-lg"></div> <div class="track-info">
-              <div class="track-name">Neon Nights</div>
-              <div class="track-sub">Citywave</div>
-            </div>
-          </div>
-          
+          <div class="section-title">Рекомендуюмые әндер</div>
+          <div id="recommend-grid" class="recommend-grid"></div>
         </div>
 
         <div id="search-section" class="panel-section hidden">
@@ -61,22 +56,52 @@
       </section>
 
       <section class="player-panel">
-        <div class="player-panel mini-player">
-    <div class="mini-info">
-        <div id="current-song-title" class="track-title">Ән таңдалмады</div>
-        <div id="current-song-artist" class="track-subtitle">Artist</div>
-    </div>
+        <div class="now-playing">
+          <div class="track-info">
+            <div id="track-title" class="track-title">No track selected</div>
+            <div id="track-subtitle" class="track-subtitle">Add songs to start listening</div>
+          </div>
+        </div>
 
-    <div class="transport">
-        <button class="icon-btn" id="prev-btn">⏮</button>
-        <button class="play-btn" id="master-play">▶</button>
-        <button class="icon-btn" id="next-btn">⏭</button>
-    </div>
+        <canvas id="wave-canvas"></canvas>
 
-    <div class="mini-controls">
-        <input type="range" class="volume-slider" value="80">
-    </div>
-</div>
+        <div class="progress-area">
+          <div class="time-row">
+            <span id="current-time">0:00</span>
+            <span id="total-time">0:00</span>
+          </div>
+          <input type="range" id="seek-bar" min="0" max="100" value="0" step="0.1" />
+        </div>
+
+        <div class="controls-row">
+          <button id="btn-shuffle" class="icon-btn" title="Shuffle">
+            <span class="icon-label">SHF</span>
+          </button>
+          <div class="transport">
+            <button id="btn-prev" class="icon-btn" title="Previous">
+              ⏮
+            </button>
+            <button id="btn-play" class="icon-btn play-btn" title="Play/Pause">
+              ▶
+            </button>
+            <button id="btn-next" class="icon-btn" title="Next">
+              ⏭
+            </button>
+          </div>
+          <button id="btn-repeat" class="icon-btn" title="Repeat">
+            <span class="icon-label">REP</span>
+          </button>
+        </div>
+
+        <div class="bottom-row">
+          <div class="volume-control">
+            <span class="volume-icon">🔊</span>
+            <input type="range" id="volume-bar" min="0" max="1" step="0.01" />
+          </div>
+          <div class="kbd-shortcuts">
+            Space: Play/Pause • ← / →: -5s / +5s
+          </div>
+        </div>
       </section>
     </main>
 

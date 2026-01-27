@@ -41,28 +41,6 @@ body {
   justify-content: center;
 }
 
-body {
-  margin: 0;
-  font-family: sans-serif;
-}
-
-.app {
-  max-width: 480px;
-  margin: 0 auto;
-}
-
-.bottom-nav {
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  height: 70px;
-}
-
-.main-content {
-  padding-bottom: 90px; /* менюге орын */
-}
-
-
 /* App shell */
 
 .app {
@@ -282,94 +260,29 @@ body {
 /* Layout */
 
 .player-layout {
-    display: grid;
-    grid-template-columns: 320px 1fr; /* Сол жақ баған ені нақты 320px */
-    gap: 20px;
-    height: calc(100% - 150px); /* Хедер мен Плеерге орын қалдыру */
-    margin-bottom: 10px;
+  flex: 1;
+  display: grid;
+  grid-template-columns: 0.9fr 1.4fr;
+  gap: 16px;
+  padding: 8px 4px 4px;
+  min-height: 0;
 }
 
 /* Playlist */
 
 .playlist-panel {
-    background: var(--bg-elevated);
-    border-radius: var(--radius-lg);
-    padding: 15px;
-    display: flex;
-    flex-direction: column;
-    border: 1px solid var(--border-subtle);
-    height: 100%; /* Контейнер ішінде толық созылады */
-    overflow: hidden; 
-}
-
-/* Плейерді экранның төменгі жағына бекіту */
-.mini-player {
-    display: grid;
-    grid-template-columns: 1fr 2fr 1fr; /* Үш бөлікке бөлу */
-    align-items: center;
-    background: rgba(15, 15, 15, 0.98);
-    border-top: 1px solid var(--accent-soft);
-    padding: 10px 25px;
-    height: 90px;
-    position: fixed;
-    bottom: 70px; /* Менюдің үстінде тұру үшін */
-    left: 0;
-    width: 100%;
-    z-index: 100;
-}
-
-/* Ән ақпараты */
-.mini-info .track-title { font-size: 0.9rem; font-weight: bold; }
-.mini-info .track-subtitle { font-size: 0.75rem; color: var(--text-muted); }
-
-/* Орталық басқару бөлімі */
-.mini-controls-center {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 8px;
-}
-
-.transport {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-}
-
-/* Прогресс барды бір сызыққа қою */
-.progress-mini {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    width: 100%;
-}
-
-.progress-mini input {
-    flex: 1;
-}
-
-.progress-mini span {
-    font-size: 11px;
-    color: var(--text-muted);
-}
-
-/* Дыбыс реттегіш */
-.mini-actions {
-    display: flex;
-    justify-content: flex-end;
-}
-
-.volume-control {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-#volume-bar { width: 100px; }
-
-/* Canvas-ты (толқынды) жасыру немесе кішірейту */
-#wave-canvas {
-    display: none; /* Орын үнемдеу үшін жасыруға болады */
+  background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.02),
+      rgba(0, 0, 0, 0.65)
+    ),
+    var(--bg-elevated);
+  border-radius: var(--radius-lg);
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--border-subtle);
+  backdrop-filter: blur(18px);
 }
 
 .playlist-header {
@@ -394,10 +307,12 @@ body {
 }
 
 .playlist {
-    flex: 1; 
-    overflow-y: auto; /* Тек осы жерде скролл болады */
-    margin-top: 10px;
-    padding-right: 5px;
+  list-style: none;
+  margin: 6px 0 0;
+  padding: 0;
+  overflow-y: auto;
+  flex: 1;
+  scroll-behavior: smooth;
 }
 
 .panel-section {
@@ -418,45 +333,41 @@ body {
   color: var(--text-secondary);
 }
 
-/* 1. Бөлім биіктігін шектейміз */
-.recommended-songs {
-    max-height: 250px; /* Биіктікті одан әрмен азайттық */
-    overflow-y: auto;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    padding-right: 8px;
+.recent-grid,
+.recommend-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 12px;
+  min-height: 90px;
 }
 
-/* 2. Карточкаларды баған емес, жол (row) қыламыз */
+.recent-card,
 .recommend-card {
-    display: flex !important; /* Тігінен емес, көлденең */
-    flex-direction: row !important;
-    align-items: center;
-    gap: 12px;
-    padding: 8px;
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    width: 100%;
-    min-height: 60px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: var(--radius-md);
+  padding: 10px;
+  display: flex;
+  cursor: pointer;
+  transition: transform var(--transition-fast), background var(--transition-fast), border var(--transition-fast);
 }
 
-/* 3. Үлкен мұқабаны (cover-lg) кішірейту */
-.recommend-card .cover-lg {
-    width: 44px !important;
-    height: 44px !important;
-    border-radius: 8px;
+.recent-card:hover,
+.recommend-card:hover {
+  transform: translateY(-1px);
+  background: rgba(255, 255, 255, 0.07);
 }
 
-/* 4. Скроллбарды стильдеу */
-.recommended-songs::-webkit-scrollbar {
-    width: 4px;
-}
-.recommended-songs::-webkit-scrollbar-thumb {
-    background: var(--accent);
-    border-radius: 4px;
+.recent-card {
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
 }
 
+.recommend-card {
+  flex-direction: column;
+  gap: 10px;
+}
 
 .cover-sm {
   width: 48px;
@@ -632,39 +543,6 @@ body {
   z-index: -1;
 }
 
-/* Плеерді төменге, менюдің үстіне қою */
-.mini-player {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px 20px;
-    height: 70px; /* Биіктігін азайттық */
-    background: rgba(20, 20, 20, 0.9);
-    border-top: 1px solid var(--accent-soft);
-}
-
-.transport {
-    display: flex;
-    gap: 15px;
-    align-items: center;
-}
-
-/* Астыңғы менюді реттеу */
-.bottom-nav {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    background: var(--bg-main);
-    padding: 10px 0;
-    border-top: 1px solid #222;
-}
-
-.nav-btn {
-    flex: 1;
-    margin: 0 5px;
-    white-space: nowrap; /* Мәтін жанып кетпеуі үшін */
-}
-
 .now-playing {
   display: flex;
   align-items: center;
@@ -768,12 +646,6 @@ input[type="range"]::-moz-range-thumb {
 
 /* Controls row */
 
-.container {
-  width: 100%;
-  max-width: 500px;
-  margin: 0 auto;
-}
-
 .controls-row {
   display: flex;
   align-items: center;
@@ -797,14 +669,6 @@ input[type="range"]::-moz-range-thumb {
   font-size: 0.7rem;
   color: var(--text-muted);
 }
-
-.bottom-nav {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-}
-
-
 
 .volume-control {
   display: flex;
@@ -900,21 +764,4 @@ input[type="range"]::-moz-range-thumb {
   #wave-canvas {
     height: 90px;
   }
-
-
-  @media (min-width: 768px) {
-  .app {
-    max-width: 900px;
-  }
-
-  .bottom-nav {
-    max-width: 900px;
-    left: 50%;
-    transform: translateX(-50%);
-    border-radius: 16px 16px 0 0;
-  }
-}
-
-
-
 }
