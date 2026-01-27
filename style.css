@@ -355,12 +355,25 @@ body {
   color: var(--text-secondary);
 }
 
-.recent-grid,
-.recommend-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-  gap: 12px;
-  min-height: 90px;
+/* "Рекомендуемые әндер" контейнерін шектеу */
+.recommended-songs {
+    max-height: 350px; /* Бөлімнің биіктігін шектеу */
+    overflow-y: auto;  /* Төмен қарай айналдыруды қосу */
+    padding-right: 5px; 
+}
+
+/* Скроллбарды (айналдыру жолағын) әдемілеу (дизайнға сай) */
+.recommended-songs::-webkit-scrollbar {
+    width: 5px;
+}
+
+.recommended-songs::-webkit-scrollbar-thumb {
+    background: #00ffa2; /* Сіздің жасыл түсіңіз */
+    border-radius: 10px;
+}
+
+.recommended-songs::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
 }
 
 .recent-card,
