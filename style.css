@@ -355,54 +355,45 @@ body {
   color: var(--text-secondary);
 }
 
-/* "Рекомендуемые әндер" контейнерін шектеу */
+/* 1. Бөлім биіктігін шектейміз */
 .recommended-songs {
-    max-height: 350px; /* Бөлімнің биіктігін шектеу */
-    overflow-y: auto;  /* Төмен қарай айналдыруды қосу */
-    padding-right: 5px; 
+    max-height: 250px; /* Биіктікті одан әрмен азайттық */
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding-right: 8px;
 }
 
-/* Скроллбарды (айналдыру жолағын) әдемілеу (дизайнға сай) */
+/* 2. Карточкаларды баған емес, жол (row) қыламыз */
+.recommend-card {
+    display: flex !important; /* Тігінен емес, көлденең */
+    flex-direction: row !important;
+    align-items: center;
+    gap: 12px;
+    padding: 8px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    width: 100%;
+    min-height: 60px;
+}
+
+/* 3. Үлкен мұқабаны (cover-lg) кішірейту */
+.recommend-card .cover-lg {
+    width: 44px !important;
+    height: 44px !important;
+    border-radius: 8px;
+}
+
+/* 4. Скроллбарды стильдеу */
 .recommended-songs::-webkit-scrollbar {
-    width: 5px;
+    width: 4px;
 }
-
 .recommended-songs::-webkit-scrollbar-thumb {
-    background: #00ffa2; /* Сіздің жасыл түсіңіз */
-    border-radius: 10px;
+    background: var(--accent);
+    border-radius: 4px;
 }
 
-.recommended-songs::-webkit-scrollbar-track {
-    background: rgba(255, 255, 255, 0.05);
-}
-
-.recent-card,
-.recommend-card {
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  border-radius: var(--radius-md);
-  padding: 10px;
-  display: flex;
-  cursor: pointer;
-  transition: transform var(--transition-fast), background var(--transition-fast), border var(--transition-fast);
-}
-
-.recent-card:hover,
-.recommend-card:hover {
-  transform: translateY(-1px);
-  background: rgba(255, 255, 255, 0.07);
-}
-
-.recent-card {
-  flex-direction: row;
-  align-items: center;
-  gap: 10px;
-}
-
-.recommend-card {
-  flex-direction: column;
-  gap: 10px;
-}
 
 .cover-sm {
   width: 48px;
