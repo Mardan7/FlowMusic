@@ -262,7 +262,7 @@ body {
 .player-layout {
   flex: 1;
   display: grid;
-  grid-template-columns: 0.9fr 1.4fr;
+  grid-template-columns: 0.7fr 1.4fr;
   gap: 16px;
   padding: 8px 4px 4px;
   min-height: 0;
@@ -336,9 +336,9 @@ body {
 .recent-grid,
 .recommend-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
   gap: 12px;
-  min-height: 70px;
+  min-height: 90px;
 }
 
 .recent-card,
@@ -346,7 +346,7 @@ body {
   background: rgba(255, 255, 255, 0.04);
   border: 1px solid rgba(255, 255, 255, 0.05);
   border-radius: var(--radius-md);
-  padding: 1px;
+  padding: 10px;
   display: flex;
   cursor: pointer;
   transition: transform var(--transition-fast), background var(--transition-fast), border var(--transition-fast);
@@ -354,7 +354,7 @@ body {
 
 .recent-card:hover,
 .recommend-card:hover {
-  transform: translateY(1px);
+  transform: translateY(10px);
   background: rgba(255, 255, 255, 0.07);
 }
 
