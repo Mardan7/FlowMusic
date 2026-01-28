@@ -1,6 +1,4 @@
-/* =========================
-   ROOT / THEME
-========================= */
+/* ================= ROOT ================= */
 
 :root {
   --bg-main: #121212;
@@ -31,9 +29,7 @@
     "Segoe UI", sans-serif;
 }
 
-/* =========================
-   RESET
-========================= */
+/* ================= RESET ================= */
 
 *,
 *::before,
@@ -41,37 +37,42 @@
   box-sizing: border-box;
 }
 
-html,
-body {
+html {
   width: 100%;
-  height: 100%;
+  min-height: 100%;
+}
+
+body {
   margin: 0;
+  min-height: 100%;
   background: radial-gradient(circle at top, #1c1c1c 0, #000 40%, #000 100%);
   color: var(--text-primary);
   font-family: var(--font-main);
-}
 
-body {
+  /* 🔥 FIX */
+  overflow-y: auto;
+  overflow-x: hidden;
+
   display: flex;
-  align-items: center;
   justify-content: center;
 }
 
-/* =========================
-   APP SHELL
-========================= */
+/* ================= APP ================= */
 
 .app {
   width: 92vw;
   max-width: 1100px;
 
-  height: 90vh;
-  max-height: 650px;
+  /* 🔥 FIX */
+  min-height: 90vh;
+  height: auto;
 
-  background: linear-gradient(
-      135deg,
-      rgba(0, 255, 198, 0.05),
-      rgba(255, 255, 255, 0.02)
+  margin: 2vh 0;
+
+  background:
+    linear-gradient(135deg,
+      rgba(0,255,198,0.05),
+      rgba(255,255,255,0.02)
     ),
     var(--bg-main);
 
@@ -83,9 +84,12 @@ body {
 
   padding: 1.2rem 1.3rem;
   position: relative;
+
+  /* 🔥 ТЕК ішкі эффектке */
   overflow: hidden;
 }
 
+/* background glow */
 .app::before {
   content: "";
   position: absolute;
@@ -98,15 +102,13 @@ body {
   z-index: -1;
 }
 
-/* =========================
-   HEADER
-========================= */
+/* ================= HEADER ================= */
 
 .app-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-bottom: 0.6rem;
+  margin-bottom: 0.8rem;
 }
 
 .logo {
@@ -131,21 +133,31 @@ body {
   color: var(--text-secondary);
 }
 
-/* =========================
-   LAYOUT
-========================= */
+/* ================= MAIN LAYOUT ================= */
 
 .player-layout {
   flex: 1;
   display: grid;
   grid-template-columns: 42% 58%;
   gap: 1rem;
+
+  /* 🔥 FIX */
   min-height: 0;
 }
 
-/* =========================
-   PLAYLIST PANEL
-========================= */
+/* ================= PANELS ================= */
+
+.panel-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.panel-section.hidden {
+  display: none;
+}
+
+/* ================= PLAYLIST ================= */
 
 .playlist-panel {
   background: var(--bg-elevated);
@@ -156,41 +168,37 @@ body {
   flex-direction: column;
 
   border: 1px solid var(--border-subtle);
-  overflow: hidden;
-}
-
-.playlist-header {
-  padding-bottom: 0.6rem;
-  border-bottom: 1px solid rgba(255,255,255,0.05);
-}
-
-.playlist-header h2 {
-  margin: 0;
-  font-size: 0.8rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--text-secondary);
 }
 
 .playlist {
-  margin-top: 0.5rem;
   list-style: none;
   padding: 0;
-  overflow-y: auto;
+  margin: 0.5rem 0 0;
+
   flex: 1;
+  overflow-y: auto;
 }
 
-.playlist-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+/* scrollbar */
+.playlist::-webkit-scrollbar {
+  width: 0.4rem;
+}
+.playlist::-webkit-scrollbar-thumb {
+  background: rgba(255,255,255,0.1);
+  border-radius: 999px;
+}
 
+/* item */
+.playlist-item {
   padding: 0.5rem 0.6rem;
   border-radius: var(--radius-md);
-
   font-size: 0.75rem;
   color: var(--text-secondary);
   cursor: pointer;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 
   transition: background var(--transition-fast),
               transform var(--transition-fast);
@@ -198,7 +206,6 @@ body {
 
 .playlist-item:hover {
   background: rgba(255,255,255,0.05);
-  transform: translateY(-2%);
 }
 
 .playlist-item.active {
@@ -206,25 +213,17 @@ body {
   color: #04110f;
 }
 
-/* =========================
-   PLAYER PANEL
-========================= */
+/* ================= PLAYER ================= */
 
 .player-panel {
   background: linear-gradient(145deg, #111, #050505);
   border-radius: var(--radius-lg);
-
   padding: 1rem;
+
   display: flex;
   flex-direction: column;
 
   border: 1px solid rgba(255,255,255,0.06);
-}
-
-.now-playing {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
 }
 
 .track-title {
@@ -237,27 +236,21 @@ body {
   color: var(--text-muted);
 }
 
-/* =========================
-   WAVEFORM
-========================= */
+/* ================= WAVE ================= */
 
 #wave-canvas {
   width: 100%;
   height: 18vh;
   max-height: 120px;
-
-  margin-top: 0.8rem;
+  margin: 0.8rem 0;
 
   border-radius: var(--radius-lg);
   background: radial-gradient(circle at 50% 0, #262626, #050505);
 }
 
-/* =========================
-   CONTROLS
-========================= */
+/* ================= CONTROLS ================= */
 
 .controls-row {
-  margin-top: 0.8rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -272,31 +265,20 @@ body {
   background: rgba(255,255,255,0.06);
   color: var(--text-secondary);
   cursor: pointer;
-
-  transition: background var(--transition-fast),
-              transform var(--transition-fast);
-}
-
-.icon-btn:hover {
-  background: rgba(255,255,255,0.12);
-  transform: scale(1.05);
 }
 
 .play-btn {
   background: var(--accent);
   color: #04110f;
-  box-shadow: 0 0 1rem rgba(0,255,198,0.8);
 }
 
-/* =========================
-   BOTTOM NAV
-========================= */
+/* ================= BOTTOM NAV ================= */
 
 .bottom-nav {
   display: grid;
   grid-template-columns: repeat(4, 25%);
   gap: 0.5rem;
-  padding-top: 0.6rem;
+  margin-top: 1rem;
 }
 
 .nav-btn {
@@ -305,7 +287,6 @@ body {
   border: none;
   background: rgba(255,255,255,0.05);
   color: var(--text-secondary);
-  cursor: pointer;
 }
 
 .nav-btn.active {
@@ -313,33 +294,25 @@ body {
   color: #04110f;
 }
 
-/* =========================
-   RESPONSIVE
-========================= */
+/* ================= RESPONSIVE ================= */
 
 @media (max-width: 900px) {
   .app {
     width: 100%;
-    height: 100%;
-    max-height: none;
     border-radius: 0;
+    margin: 0;
   }
 
   .player-layout {
     grid-template-columns: 1fr;
-    grid-template-rows: auto auto;
   }
 
   .playlist-panel {
-    max-height: 30vh;
+    max-height: 35vh;
   }
 }
 
 @media (max-width: 600px) {
-  .track-title {
-    font-size: 0.9rem;
-  }
-
   #wave-canvas {
     height: 14vh;
   }
