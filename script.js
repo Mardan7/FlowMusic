@@ -815,4 +815,4 @@ function init() {
   switchTab(state.currentTab);
 }
 
-document.addEventListener("DOMContentLoaded", init);document.addEventListener("DOMContentLoaded", init);
+document.addEventListener("DOMContentLoaded", init);
